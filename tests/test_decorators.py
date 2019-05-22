@@ -67,8 +67,11 @@ def test_decorated_processors():
     schema = ExampleSchema()
 
     # Need to re-create these because the processors will modify in place.
-    make_item = lambda: {"value": 3}
-    make_items = lambda: [make_item(), {"value": 5}]
+    def make_item():
+        return {"value": 3}
+
+    def make_items():
+        return [make_item(), {"value": 5}]
 
     item_dumped = schema.dump(make_item())
     assert item_dumped == {"datum": {"value": "TAG4"}}

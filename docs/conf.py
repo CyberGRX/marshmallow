@@ -150,6 +150,7 @@ versionwarning_body_selector = "div.document"
 # For debugging locally
 # versionwarning_project_version = '3.0'
 
+
 # https://docs.readthedocs.io/en/latest/guides/adding-custom-css.html
 def setup(app):
     app.add_stylesheet("css/versionwarning.css")

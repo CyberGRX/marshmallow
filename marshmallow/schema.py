@@ -513,9 +513,10 @@ class BaseSchema(base.SchemaABC):
             if getattr(field_obj, "load_only", False):
                 continue
             key = field_obj.data_key or attr_name
-            getter = lambda d: field_obj.serialize(
-                attr_name, d, accessor=accessor
-            )
+
+            def getter(d):
+                return field_obj.serialize(attr_name, d, accessor=accessor)
+
             value = self._call_and_store(
                 getter_func=getter,
                 data=obj,
@@ -698,9 +699,12 @@ class BaseSchema(base.SchemaABC):
                     else:
                         sub_partial = partial
                     d_kwargs["partial"] = sub_partial
-                getter = lambda val: field_obj.deserialize(
-                    val, field_name, data, **d_kwargs
-                )
+
+                def getter(val):
+                    return field_obj.deserialize(
+                        val, field_name, data, **d_kwargs
+                    )
+
                 value = self._call_and_store(
                     getter_func=getter,
                     data=raw_value,
