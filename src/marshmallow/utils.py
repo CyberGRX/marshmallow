@@ -231,7 +231,8 @@ def from_iso_datetime(datetimestring, *, use_dateutil=True):
         return parser.isoparse(datetimestring)
     else:
         # Strip off timezone info.
-        return datetime.datetime.strptime(datetimestring[:19], '%Y-%m-%dT%H:%M:%S')
+        return datetime.datetime.fromisoformat(datetimestring)
+        # return datetime.datetime.strptime(datetimestring[:19], '%Y-%m-%dT%H:%M:%S')
 
 
 def from_iso_time(timestring, *, use_dateutil=True):
