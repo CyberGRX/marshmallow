@@ -1,22 +1,22 @@
 {
-    "name": "Marshmallow",
-    "package": "marshmallow",
-    "index": "_build/index.html",
-    "selectors": {
-        "dl.class dt": {
-            "type": "Class",
-            "attr": "id"
-        },
-        "dl.exception dt": {
-            "type": "Exception",
-            "attr": "id"
-        },
-        "dl.function dt": {
-            "type": "Function",
-            "attr": "id"
-        }
+  "ExternalURL": "",
+  "allowJS": false,
+  "icon32x32": "",
+  "index": "_build/index.html",
+  "name": "Marshmallow",
+  "package": "marshmallow",
+  "selectors": {
+    "dl.class dt": {
+      "attr": "id",
+      "type": "Class"
     },
-    "icon32x32": "",
-    "allowJS": false,
-    "ExternalURL": ""
+    "dl.exception dt": {
+      "attr": "id",
+      "type": "Exception"
+    },
+    "dl.function dt": {
+      "attr": "id",
+      "type": "Function"
+    }
+  }
 }

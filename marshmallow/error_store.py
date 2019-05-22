@@ -10,7 +10,6 @@ from marshmallow.exceptions import SCHEMA
 
 
 class ErrorStore:
-
     def __init__(self):
         #: Dictionary of errors stored during serialization
         self.errors = {}
@@ -43,15 +42,13 @@ def merge_errors(errors1, errors2):
             return errors1 + errors2
         if isinstance(errors2, dict):
             return dict(
-                errors2,
-                **{SCHEMA: merge_errors(errors1, errors2.get(SCHEMA))}
+                errors2, **{SCHEMA: merge_errors(errors1, errors2.get(SCHEMA))}
             )
         return errors1 + [errors2]
     if isinstance(errors1, dict):
         if isinstance(errors2, list):
             return dict(
-                errors1,
-                **{SCHEMA: merge_errors(errors1.get(SCHEMA), errors2)}
+                errors1, **{SCHEMA: merge_errors(errors1.get(SCHEMA), errors2)}
             )
         if isinstance(errors2, dict):
             errors = dict(errors1)
@@ -62,14 +59,12 @@ def merge_errors(errors1, errors2):
                     errors[key] = val
             return errors
         return dict(
-            errors1,
-            **{SCHEMA: merge_errors(errors1.get(SCHEMA), errors2)}
+            errors1, **{SCHEMA: merge_errors(errors1.get(SCHEMA), errors2)}
         )
     if isinstance(errors2, list):
         return [errors1] + errors2 if errors2 else errors1
     if isinstance(errors2, dict):
         return dict(
-            errors2,
-            **{SCHEMA: merge_errors(errors1, errors2.get(SCHEMA))}
+            errors2, **{SCHEMA: merge_errors(errors1, errors2.get(SCHEMA))}
         )
     return [errors1, errors2]
