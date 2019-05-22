@@ -1,29 +1,32 @@
-language: python
 dist: xenial
-cache: pip
-install: travis_retry pip install -U tox
-script: tox
-jobs:
-  fast_finish: true
+language: python
+python: '3.7'
 
-  include:
-  - { python: '3.6', env: TOXENV=lint }
-  - { python: '3.5', env: TOXENV=py35 }
-  - { python: '3.6', env: TOXENV=py36 }
-  - { python: '3.7', env: TOXENV=py37 }
-  - { python: '3.6', env: TOXENV=docs }
+cache:
+  pip: true
+  directories:
+  - "$HOME/.cache/pre-commit"
 
-  - stage: PyPI Release
-    if: tag IS present
-    python: "3.6"
-    env: []
-    install: skip
-    script: skip
-    deploy:
-      provider: pypi
-      user: sloria
-      on:
-        tags: true
-      distributions: sdist bdist_wheel
-      password:
-        secure: ESoVNuEqjuNGCCGMbjHwIJS3LfPL2BKPQG5RuDiW8qo4+BN25yobiD+Bo7kozUtUHVKa6oTdi4Gqb1i5IUKNcaP0qBItdkk3LPOAUyOhdFZF+dL22JhajJ6LNO7i1cyUTzjYaS2cOTG8kSSYd7W9Okfp5bY6HtUNgCqhI1mZfMU=
+before_install:
+  - pip install --upgrade pip==18.1
+  - pip install pre-commit coveralls poetry
+  - pre-commit install-hooks
+install:
+  - poetry install -v
+script:
+  - pre-commit run --all-files
+  - pytest --cov=./tests
+after_success:
+  - coveralls -v
+before_deploy:
+  - poetry build -f sdist
+deploy:
+  provider: script
+  script: poetry publish -v --username $PYPI_USER --password $PYPI_PASS
+  skip_cleanup: true
+  on:
+    tags: true
+env:
+  global:
+  - secure: VOvHmiCymr199V1RY9CjljUehNalVN4dPb4olT8+A4QTN5GBvNQg5JG+/lbb2K3sNeE8UfFwtjW2aSSmRg/LAqSVqrXbCySAvUoILTAcwx/wFOHtIPQ+Q3RVnpSh8iEd9teYz8aarvjIJCjrZPpk7sa9xGKc/99eXqfXzS03UM2Go4L0h3dDdI039di2PpvxOPLqZbUrsXL0+OzadEpVjDkL3kmgYnMt1dnQO4kVOivaLmI2tmv74YGJFvw/As6JWYxWCGR4vRHh1fNNVCMcb1jahG9IDwfoCulqindTtrxh75H3nuEOEwpPp9YzAst2UEFBg3T7Umz/zkfo/dSBcDlGhLof7sJgcj1DxgSYqQRJIXEk5cRe3di2l+cXlOU8fTcBpDTYF3N6MxaIrhr5jgc7YOoC1yutXYwF4SWVU9bF9PINFJQlw5ecn2W0ku5Qr80AmJfn5CI+P/CWZx81rRCjHuFMVnWycHglmxTfLMm1tc7tQjAhElh3aITjj84ylhDiX+xo+X1u7Jsc4iV7+29pSUHD1lWhmgkjwGcO1NHuimReV6k83q+C9fRO+UjgDR85qNNlQh8igkOulodoUFesAAnFHy71/khFClSdmEoYl6PWlTSunP6958AVXEbnU38ltG8s+QCqVk66KLxliimRpuPYvO6GeM0iMVQ3Zhg=
+  - secure: hT9oZq/TO2RMa0jHeet4bSh9jZC2ibvZmNY1JAIImf3LmdfsF62E5f7gBxn1BnT/o6k7MIDSXxYiKrelBfRHs48QDRj9b1yjTtPhEjwwArjqZaY5w3xno7zW3UZMDfXW+LtLeC78lhjFaPeJ4BMvDASxA0HGxiCOun6YiDZYqYwrOmzM/iUZxznbsixlRSCWyb9l4nuynAaJZmXszCAi7Ag0xHrbkakdt5Q9jV0ZkcUi1WY1iZQAWNenO3xmpSiMtk5EcEhmsj8mPmSba1HajjqSMsfbLZa8ZONbrjPWki/ipwzQDUfDaSTQV13RqAQ4W/fbtPHAAstqXYpcEsjRoXbfapF5vmhLedEK8vVWjLQvRzwCiVPLB5o6OeTmnG8D+qjvjuEeeOeNfJZiesSfDm0BkeBXsKOpZGGD5vJ4CDccYSENMHY4X9uho+rg/cE6WOBiFbMKR/QUeSzv2V936zMBK0+2qW/jgFlQF0IXRfXZtp6L6xomqItWM+EubHxURHBJ9ZC6V+E4eZh/KCWgV/T1wXM3PAeR4351TcTEQMNk+s2UT4i73idkXOjx1HVU4eCmbFTHt+fqEuoX9Ximbg6CwExDyb84eBniO7LcIOnflaIhpdsWvluGTxNW8+KSy7wXRdkaahsGML9zhbvrvQi48ZIHOr+i2sxAVqr/9jw=
