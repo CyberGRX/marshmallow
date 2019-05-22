@@ -15,7 +15,7 @@ install:
   - poetry install -v
 script:
   - pre-commit run --all-files
-  - pytest --cov=./tests
+  - pytest --cov=./marshmallow
 after_success:
   - coveralls -v
 before_deploy:
