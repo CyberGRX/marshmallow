@@ -1630,7 +1630,7 @@ class TestValidation:
     @pytest.mark.parametrize(
         'field', [
             fields.Integer(validate=[lambda x: x <= 24, lambda x: 18 <= x]),
-            fields.Integer(validate=(lambda x: x <= 24, lambda x: 18 <= x, )),
+            fields.Integer(validate=(lambda x: x <= 24, lambda x: 18 <= x,)),
             fields.Integer(validate=validators_gen),
         ],
     )
@@ -1643,7 +1643,7 @@ class TestValidation:
     @pytest.mark.parametrize(
         'field', [
             fields.Float(validate=[lambda f: f <= 4.1, lambda f: f >= 1.0]),
-            fields.Float(validate=(lambda f: f <= 4.1, lambda f: f >= 1.0, )),
+            fields.Float(validate=(lambda f: f <= 4.1, lambda f: f >= 1.0,)),
             fields.Float(validate=validators_gen_float),
         ],
     )

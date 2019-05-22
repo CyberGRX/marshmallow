@@ -279,7 +279,7 @@ class BlogSchemaMeta(Schema):
 class BlogOnlySchema(Schema):
     title = fields.String()
     user = fields.Nested(UserSchema)
-    collaborators = fields.Nested(UserSchema, only=('id', ), many=True)
+    collaborators = fields.Nested(UserSchema, only=('id',), many=True)
 
 
 class BlogSchemaExclude(BlogSchema):
@@ -287,7 +287,7 @@ class BlogSchemaExclude(BlogSchema):
 
 
 class BlogSchemaOnlyExclude(BlogSchema):
-    user = fields.Nested(UserSchema, only=('name', ), exclude=('name', 'species'))
+    user = fields.Nested(UserSchema, only=('name',), exclude=('name', 'species'))
 
 
 class mockjson:  # noqa

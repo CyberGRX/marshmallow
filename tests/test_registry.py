@@ -127,7 +127,7 @@ class C:
 
 class ASchema(Schema):
     id = fields.Integer()
-    b = fields.Nested('BSchema', exclude=('a', ))
+    b = fields.Nested('BSchema', exclude=('a',))
 
 class BSchema(Schema):
     id = fields.Integer()

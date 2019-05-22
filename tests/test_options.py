@@ -140,7 +140,7 @@ class TestFieldOrdering:
             class Meta:
                 ordered = True
 
-            user = fields.Nested(KeepOrder, exclude=('birthdate', ))
+            user = fields.Nested(KeepOrder, exclude=('birthdate',))
 
         ser = HasNestedExclude()
         data = ser.dump({'user': user})
