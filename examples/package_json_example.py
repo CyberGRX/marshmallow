@@ -13,7 +13,7 @@ class Version(fields.Field):
         try:
             return version.Version(value)
         except version.InvalidVersion:
-            raise ValidationError('Not a valid version.')
+            raise ValidationError("Not a valid version.")
 
     def _serialize(self, value, *args, **kwargs):
         return str(value)
@@ -27,12 +27,14 @@ class PackageSchema(Schema):
     homepage = fields.URL(required=False)
     scripts = fields.Dict(keys=fields.Str(), values=fields.Str())
     license = fields.Str(required=True)
-    dependencies = fields.Dict(keys=fields.Str(), values=fields.Str(), required=False)
+    dependencies = fields.Dict(
+        keys=fields.Str(), values=fields.Str(), required=False
+    )
     dev_dependencies = fields.Dict(
         keys=fields.Str(),
         values=fields.Str(),
         required=False,
-        data_key='devDependencies',
+        data_key="devDependencies",
     )
 
     class Meta:
@@ -41,11 +43,11 @@ class PackageSchema(Schema):
         unknown = INCLUDE
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pkg = json.load(sys.stdin)
     try:
         pprint(PackageSchema().load(pkg))
     except ValidationError as error:
-        print('ERROR: package.json is invalid')
+        print("ERROR: package.json is invalid")
         pprint(error.messages)
         sys.exit(1)
