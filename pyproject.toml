@@ -9,6 +9,9 @@ editable = false
 repository = "https://github.com/CyberGRX/marshmallow"
 keywords = ["marshmallow", "orm", "model", "models", "python"]
 exclude = ["venv", "env", "dist", "build", "tests", "tests.*"]
+packages = [
+    {include = "marshmallow"}
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
