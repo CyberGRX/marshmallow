@@ -839,6 +839,9 @@ def test_custom_unknown_error_message():
     custom_message = "custom error message."
 
     class ErrorSchema(Schema):
+        class Meta:
+            unknown = RAISE
+
         error_messages = {"unknown": custom_message}
         name = fields.String()
 
@@ -886,6 +889,9 @@ def test_custom_error_messages_with_inheritance():
     child_type_message = "child type error message."
 
     class ParentSchema(Schema):
+        class Meta:
+            unknown = RAISE
+
         error_messages = {
             "type": parent_type_message,
             "unknown": parent_unknown_message,
@@ -2275,9 +2281,15 @@ class TestNestedSchema:
     @pytest.mark.parametrize("unknown", (None, RAISE, INCLUDE, EXCLUDE))
     def test_nested_unknown_validation(self, unknown):
         class ChildSchema(Schema):
+            class Meta:
+                unknown = RAISE
+
             num = fields.Int()
 
         class ParentSchema(Schema):
+            class Meta:
+                unknown = RAISE
+
             child = fields.Nested(ChildSchema, unknown=unknown)
 
         data = {"child": {"num": 1, "extra": 1}}
