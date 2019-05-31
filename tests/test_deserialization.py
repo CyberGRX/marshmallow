@@ -1447,6 +1447,9 @@ class TestSchemaDeserialization:
 
     def test_unknown_fields_deserialization(self):
         class MySchema(Schema):
+            class Meta:
+                unknown = RAISE
+
             foo = fields.Integer()
 
         data = MySchema(unknown=EXCLUDE).load({"foo": 3, "bar": 5})
@@ -1557,6 +1560,9 @@ class TestSchemaDeserialization:
 
     def test_dump_only_fields_considered_unknown(self):
         class MySchema(Schema):
+            class Meta:
+                unknown = RAISE
+
             foo = fields.Int(dump_only=True)
 
         with pytest.raises(ValidationError) as excinfo:
