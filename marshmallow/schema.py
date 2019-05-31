@@ -226,7 +226,7 @@ class SchemaOpts:
         self.include = getattr(meta, "include", {})
         self.load_only = getattr(meta, "load_only", ())
         self.dump_only = getattr(meta, "dump_only", ())
-        self.unknown = getattr(meta, "unknown", RAISE)
+        self.unknown = getattr(meta, "unknown", INCLUDE)
         self.register = getattr(meta, "register", True)
 
 
@@ -616,7 +616,7 @@ class BaseSchema(base.SchemaABC):
         error_store,
         many=False,
         partial=False,
-        unknown=RAISE,
+        unknown=INCLUDE,
         dict_class=dict,
         index_errors=True,
         index=None
