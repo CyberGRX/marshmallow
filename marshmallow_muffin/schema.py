@@ -13,7 +13,10 @@ from collections.abc import Mapping
 from marshmallow_muffin import base, fields as ma_fields, class_registry
 from marshmallow_muffin.error_store import ErrorStore
 from marshmallow_muffin.fields import Nested
-from marshmallow_muffin.exceptions import ValidationError, StringNotCollectionError
+from marshmallow_muffin.exceptions import (
+    ValidationError,
+    StringNotCollectionError,
+)
 from marshmallow_muffin.orderedset import OrderedSet
 from marshmallow_muffin.decorators import (
     POST_DUMP,

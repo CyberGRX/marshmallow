@@ -19,7 +19,10 @@ from marshmallow_muffin import (
     INCLUDE,
     RAISE,
 )
-from marshmallow_muffin.exceptions import ValidationError, StringNotCollectionError
+from marshmallow_muffin.exceptions import (
+    ValidationError,
+    StringNotCollectionError,
+)
 
 from tests.base import (
     assert_almost_equal,
