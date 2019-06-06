@@ -1,4 +1,4 @@
-"""Exception classes for marshmallow-related errors."""
+"""Exception classes for marshmallow_muffin-related errors."""
 
 
 # Key used for schema-level validation errors
@@ -6,7 +6,7 @@ SCHEMA = "_schema"
 
 
 class MarshmallowError(Exception):
-    """Base class for all marshmallow-related errors."""
+    """Base class for all marshmallow_muffin-related errors."""
 
 
 class ValidationError(MarshmallowError):

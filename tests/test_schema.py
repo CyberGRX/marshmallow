@@ -9,7 +9,7 @@ import simplejson as json
 
 import pytest
 
-from marshmallow import (
+from marshmallow_muffin import (
     Schema,
     fields,
     utils,
@@ -19,7 +19,10 @@ from marshmallow import (
     INCLUDE,
     RAISE,
 )
-from marshmallow.exceptions import ValidationError, StringNotCollectionError
+from marshmallow_muffin.exceptions import (
+    ValidationError,
+    StringNotCollectionError,
+)
 
 from tests.base import (
     assert_almost_equal,
@@ -1266,7 +1269,7 @@ def test_nested_custom_set_not_implementing_getitem():
 
     class ChildSchema(Schema):
         """
-        The marshmallow schema for the child
+        The marshmallow_muffin schema for the child
         """
 
         attribute = fields.Str()

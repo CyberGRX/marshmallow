@@ -1,4 +1,4 @@
-"""Utility methods for marshmallow."""
+"""Utility methods for marshmallow_muffin."""
 import collections
 import functools
 import datetime
@@ -11,8 +11,8 @@ from collections.abc import Mapping, Iterable
 from email.utils import formatdate, parsedate
 from pprint import pprint as py_pprint
 
-from marshmallow.base import FieldABC
-from marshmallow.exceptions import FieldInstanceResolutionError
+from marshmallow_muffin.base import FieldABC
+from marshmallow_muffin.exceptions import FieldInstanceResolutionError
 
 EXCLUDE = "exclude"
 INCLUDE = "include"
@@ -38,7 +38,7 @@ class _Missing:
         return self
 
     def __repr__(self):
-        return "<marshmallow.missing>"
+        return "<marshmallow_muffin.missing>"
 
 
 # Singleton value that indicates that a field's value is missing from input
@@ -83,7 +83,7 @@ def is_keyed_tuple(obj):
 def pprint(obj, *args, **kwargs):
     """Pretty-printing function that can pretty-print OrderedDicts
     like regular dictionaries. Useful for printing the output of
-    :meth:`marshmallow.Schema.dump`.
+    :meth:`marshmallow_muffin.Schema.dump`.
     """
     if isinstance(obj, collections.OrderedDict):
         print(json.dumps(obj, *args, **kwargs))
@@ -312,7 +312,7 @@ def get_value(obj, key, default=missing):
     .. warning::
         If an object `x` does not raise an exception when `x[i]` does not exist,
         `get_value` will never check the value `x.i`. Consider overriding
-        `marshmallow.fields.Field.get_value` in this case.
+        `marshmallow_muffin.fields.Field.get_value` in this case.
     """
     if not isinstance(key, int) and "." in key:
         return _get_value_for_keys(obj, key.split("."), default)

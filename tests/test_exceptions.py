@@ -1,4 +1,4 @@
-from marshmallow.exceptions import ValidationError
+from marshmallow_muffin.exceptions import ValidationError
 
 
 class TestValidationError:

@@ -1,6 +1,6 @@
 import pytest
 
-from marshmallow import (
+from marshmallow_muffin import (
     fields,
     Schema,
     ValidationError,
@@ -9,7 +9,7 @@ from marshmallow import (
     RAISE,
     missing,
 )
-from marshmallow.exceptions import StringNotCollectionError
+from marshmallow_muffin.exceptions import StringNotCollectionError
 
 from tests.base import ALL_FIELDS
 

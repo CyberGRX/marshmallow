@@ -1,4 +1,4 @@
-from marshmallow import fields, Schema
+from marshmallow_muffin import fields, Schema
 
 
 # Regression test for https://github.com/marshmallow-code/marshmallow/issues/540

@@ -11,19 +11,19 @@ import warnings
 from enum import Enum
 from collections.abc import Mapping as _Mapping
 
-from marshmallow import validate, utils, class_registry
-from marshmallow.base import FieldABC, SchemaABC
-from marshmallow.utils import (
+from marshmallow_muffin import validate, utils, class_registry
+from marshmallow_muffin.base import FieldABC, SchemaABC
+from marshmallow_muffin.utils import (
     is_collection,
     missing as missing_,
     resolve_field_instance,
 )
-from marshmallow.exceptions import (
+from marshmallow_muffin.exceptions import (
     ValidationError,
     StringNotCollectionError,
     FieldInstanceResolutionError,
 )
-from marshmallow.validate import Validator, Length
+from marshmallow_muffin.validate import Validator, Length
 
 __all__ = [
     "Field",
@@ -126,7 +126,7 @@ class Field(FieldABC):
 
     #: Default error messages for various kinds of errors. The keys in this dictionary
     #: are passed to `Field.fail`. The values are error messages passed to
-    #: :exc:`marshmallow.exceptions.ValidationError`.
+    #: :exc:`marshmallow_muffin.exceptions.ValidationError`.
     default_error_messages = {
         "required": "Missing data for required field.",
         "null": "Field may not be null.",
@@ -210,7 +210,7 @@ class Field(FieldABC):
         :param object obj: The object to get the value from
         :param str attr: The attribute/key in `obj` to get the value from.
         :param callable accessor: A callable used to retrieve the value of `attr` from
-            the object `obj`. Defaults to `marshmallow.utils.get_value`.
+            the object `obj`. Defaults to `marshmallow_muffin.utils.get_value`.
         """
         # NOTE: Use getattr instead of direct attribute access here so that
         # subclasses aren't required to define `attribute` member
@@ -311,7 +311,7 @@ class Field(FieldABC):
 
     def _bind_to_schema(self, field_name, schema):
         """Update field with values from its parent schema. Called by
-            :meth:`_bind_field<marshmallow.Schema._bind_field>`.
+            :meth:`_bind_field<marshmallow_muffin.Schema._bind_field>`.
 
         :param str field_name: Field name set in schema.
         :param Schema schema: Parent schema.
@@ -384,7 +384,7 @@ class Raw(Field):
 
 
 class Nested(Field):
-    """Allows you to nest a :class:`Schema <marshmallow.Schema>`
+    """Allows you to nest a :class:`Schema <marshmallow_muffin.Schema>`
     inside a field.
 
     Examples: ::
@@ -394,11 +394,11 @@ class Nested(Field):
         collaborators = fields.Nested(UserSchema, many=True, only=('id',))
         parent = fields.Nested('self')
 
-    When passing a `Schema <marshmallow.Schema>` instance as the first argument,
+    When passing a `Schema <marshmallow_muffin.Schema>` instance as the first argument,
     the instance's ``exclude``, ``only``, and ``many`` attributes will be respected.
 
     Therefore, when passing the ``exclude``, ``only``, or ``many`` arguments to `fields.Nested`,
-    you should pass a `Schema <marshmallow.Schema>` class (not an instance) as the first argument.
+    you should pass a `Schema <marshmallow_muffin.Schema>` class (not an instance) as the first argument.
 
     ::
 
@@ -590,7 +590,7 @@ class List(Field):
         except FieldInstanceResolutionError:
             raise ValueError(
                 "The list elements must be a subclass or instance of "
-                "marshmallow.base.FieldABC."
+                "marshmallow_muffin.base.FieldABC."
             )
 
     def _bind_to_schema(self, field_name, schema):
@@ -665,7 +665,7 @@ class Tuple(Field):
         except FieldInstanceResolutionError:
             raise ValueError(
                 'Elements of "tuple_fields" must be subclasses or '
-                "instances of marshmallow.base.FieldABC."
+                "instances of marshmallow_muffin.base.FieldABC."
             )
 
         self.validate_length = Length(equal=len(self.tuple_fields))
@@ -958,9 +958,9 @@ class Boolean(Field):
 
     :param set truthy: Values that will (de)serialize to `True`. If an empty
         set, any non-falsy value will deserialize to `True`. If `None`,
-        `marshmallow.fields.Boolean.truthy` will be used.
+        `marshmallow_muffin.fields.Boolean.truthy` will be used.
     :param set falsy: Values that will (de)serialize to `False`. If `None`,
-        `marshmallow.fields.Boolean.falsy` will be used.
+        `marshmallow_muffin.fields.Boolean.falsy` will be used.
     :param kwargs: The same keyword arguments that :class:`Field` receives.
     """
 
@@ -1044,8 +1044,8 @@ class DateTime(Field):
     Example: ``'2014-12-22T03:12:58.019077+00:00'``
 
     Timezone-naive `datetime` objects are converted to
-    UTC (+00:00) by :meth:`Schema.dump <marshmallow.Schema.dump>`.
-    :meth:`Schema.load <marshmallow.Schema.load>` returns `datetime`
+    UTC (+00:00) by :meth:`Schema.dump <marshmallow_muffin.Schema.dump>`.
+    :meth:`Schema.load <marshmallow_muffin.Schema.load>` returns `datetime`
     objects that are timezone-aware.
 
     :param str format: Either ``"rfc"`` (for RFC822), ``"iso"`` (for ISO8601),
@@ -1134,7 +1134,7 @@ class LocalDateTime(DateTime):
 
         ex. ``"Sun, 10 Nov 2013 08:23:45 -0600"``
 
-    Takes the same arguments as :class:`DateTime <marshmallow.fields.DateTime>`.
+    Takes the same arguments as :class:`DateTime <marshmallow_muffin.fields.DateTime>`.
     """
 
     localtime = True
@@ -1306,7 +1306,7 @@ class Mapping(Field):
             except FieldInstanceResolutionError:
                 raise ValueError(
                     '"keys" must be a subclass or instance of '
-                    "marshmallow.base.FieldABC."
+                    "marshmallow_muffin.base.FieldABC."
                 )
 
         if values is None:
@@ -1317,7 +1317,7 @@ class Mapping(Field):
             except FieldInstanceResolutionError:
                 raise ValueError(
                     '"values" must be a subclass or instance of '
-                    "marshmallow.base.FieldABC."
+                    "marshmallow_muffin.base.FieldABC."
                 )
 
     def _bind_to_schema(self, field_name, schema):

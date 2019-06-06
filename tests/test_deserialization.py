@@ -5,7 +5,7 @@ import math
 
 import pytest
 
-from marshmallow import (
+from marshmallow_muffin import (
     EXCLUDE,
     INCLUDE,
     RAISE,
@@ -14,8 +14,8 @@ from marshmallow import (
     Schema,
     validate,
 )
-from marshmallow.exceptions import ValidationError
-from marshmallow.validate import Equal
+from marshmallow_muffin.exceptions import ValidationError
+from marshmallow_muffin.validate import Equal
 
 from tests.base import (
     assert_almost_equal,

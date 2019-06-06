@@ -3,7 +3,7 @@ import datetime as dt
 
 import pytest
 
-from marshmallow import fields, Schema, EXCLUDE
+from marshmallow_muffin import fields, Schema, EXCLUDE
 
 from tests.base import User
 

@@ -1,10 +1,10 @@
-"""Tests for marshmallow.validate"""
+"""Tests for marshmallow_muffin.validate"""
 from __future__ import unicode_literals
 
 import re
 import pytest
 
-from marshmallow import validate, ValidationError
+from marshmallow_muffin import validate, ValidationError
 
 
 @pytest.mark.parametrize(

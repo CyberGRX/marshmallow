@@ -1,13 +1,13 @@
-"""A registry of :class:`Schema <marshmallow.Schema>` classes. This allows for string
+"""A registry of :class:`Schema <marshmallow_muffin.Schema>` classes. This allows for string
 lookup of schemas, which may be used with
-class:`fields.Nested <marshmallow.fields.Nested>`.
+class:`fields.Nested <marshmallow_muffin.fields.Nested>`.
 
 .. warning::
 
     This module is treated as private API.
     Users should not need to use this module directly.
 """
-from marshmallow.exceptions import RegistryError
+from marshmallow_muffin.exceptions import RegistryError
 
 # {
 #   <class_name>: <list of class objects>
@@ -61,7 +61,7 @@ def register(classname, cls):
 def get_class(classname, all=False):
     """Retrieve a class from the registry.
 
-    :raises: marshmallow.exceptions.RegistryError if the class cannot be found
+    :raises: marshmallow_muffin.exceptions.RegistryError if the class cannot be found
         or if there are multiple entries for the given class name.
     """
     try:

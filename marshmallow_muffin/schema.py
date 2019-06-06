@@ -10,12 +10,15 @@ import json
 import warnings
 from collections.abc import Mapping
 
-from marshmallow import base, fields as ma_fields, class_registry
-from marshmallow.error_store import ErrorStore
-from marshmallow.fields import Nested
-from marshmallow.exceptions import ValidationError, StringNotCollectionError
-from marshmallow.orderedset import OrderedSet
-from marshmallow.decorators import (
+from marshmallow_muffin import base, fields as ma_fields, class_registry
+from marshmallow_muffin.error_store import ErrorStore
+from marshmallow_muffin.fields import Nested
+from marshmallow_muffin.exceptions import (
+    ValidationError,
+    StringNotCollectionError,
+)
+from marshmallow_muffin.orderedset import OrderedSet
+from marshmallow_muffin.decorators import (
     POST_DUMP,
     POST_LOAD,
     PRE_DUMP,
@@ -23,7 +26,7 @@ from marshmallow.decorators import (
     VALIDATES,
     VALIDATES_SCHEMA,
 )
-from marshmallow.utils import (
+from marshmallow_muffin.utils import (
     RAISE,
     EXCLUDE,
     INCLUDE,
@@ -238,7 +241,7 @@ class BaseSchema(base.SchemaABC):
     .. code-block:: python
 
         import datetime as dt
-        from marshmallow import Schema, fields
+        from marshmallow_muffin import Schema, fields
 
         class Album:
             def __init__(self, title, release_date):
@@ -284,8 +287,8 @@ class BaseSchema(base.SchemaABC):
 
     .. versionchanged:: 2.0.0
         `__validators__`, `__preprocessors__`, and `__data_handlers__` are removed in favor of
-        `marshmallow.decorators.validates_schema`,
-        `marshmallow.decorators.pre_load` and `marshmallow.decorators.post_dump`.
+        `marshmallow_muffin.decorators.validates_schema`,
+        `marshmallow_muffin.decorators.pre_load` and `marshmallow_muffin.decorators.post_dump`.
         `__accessor__` and `__error_handler__` are deprecated. Implement the
         `handle_error` and `get_attribute` methods instead.
     """
@@ -350,7 +353,7 @@ class BaseSchema(base.SchemaABC):
         - ``dump_only``: Tuple or list of fields to exclude from deserialization
         - ``unknown``: Whether to exclude, include, or raise an error for unknown
             fields in the data. Use `EXCLUDE`, `INCLUDE` or `RAISE`.
-        - ``register``: Whether to register the `Schema` with marshmallow's internal
+        - ``register``: Whether to register the `Schema` with marshmallow_muffin's internal
             class registry. Must be `True` if you intend to refer to this `Schema`
             by class name in `Nested` fields. Only set this to `False` when memory
             usage is critical. Defaults to `True`.
@@ -543,7 +546,7 @@ class BaseSchema(base.SchemaABC):
         .. versionadded:: 1.0.0
         .. versionchanged:: 3.0.0b7
             This method returns the serialized data rather than a ``(data, errors)`` duple.
-            A :exc:`ValidationError <marshmallow.exceptions.ValidationError>` is raised
+            A :exc:`ValidationError <marshmallow_muffin.exceptions.ValidationError>` is raised
             if ``obj`` is invalid.
         """
         error_store = ErrorStore()
@@ -602,7 +605,7 @@ class BaseSchema(base.SchemaABC):
         .. versionadded:: 1.0.0
         .. versionchanged:: 3.0.0b7
             This method returns the serialized data rather than a ``(data, errors)`` duple.
-            A :exc:`ValidationError <marshmallow.exceptions.ValidationError>` is raised
+            A :exc:`ValidationError <marshmallow_muffin.exceptions.ValidationError>` is raised
             if ``obj`` is invalid.
         """
         serialized = self.dump(obj, many=many)
@@ -752,7 +755,7 @@ class BaseSchema(base.SchemaABC):
         .. versionadded:: 1.0.0
         .. versionchanged:: 3.0.0b7
             This method returns the deserialized data rather than a ``(data, errors)`` duple.
-            A :exc:`ValidationError <marshmallow.exceptions.ValidationError>` is raised
+            A :exc:`ValidationError <marshmallow_muffin.exceptions.ValidationError>` is raised
             if invalid data are passed.
         """
         return self._do_load(
@@ -780,7 +783,7 @@ class BaseSchema(base.SchemaABC):
         .. versionadded:: 1.0.0
         .. versionchanged:: 3.0.0b7
             This method returns the deserialized data rather than a ``(data, errors)`` duple.
-            A :exc:`ValidationError <marshmallow.exceptions.ValidationError>` is raised
+            A :exc:`ValidationError <marshmallow_muffin.exceptions.ValidationError>` is raised
             if invalid data are passed.
         """
         data = self.opts.render_module.loads(json_data, **kwargs)

@@ -11,7 +11,7 @@ import gc
 import timeit
 import time
 
-from marshmallow import Schema, fields, ValidationError, pre_load
+from marshmallow_muffin import Schema, fields, ValidationError, pre_load
 
 
 # Custom validator
@@ -109,7 +109,7 @@ def run_timeit(quotes, iterations, repeat, profile=False):
     )
     if profile:
         profile.disable()
-        profile.dump_stats("marshmallow.pprof")
+        profile.dump_stats("marshmallow_muffin.pprof")
 
     usec = best * 1e6 / iterations
     return usec
