@@ -10,7 +10,7 @@ repository = "https://github.com/CyberGRX/marshmallow"
 keywords = ["marshmallow", "orm", "model", "models", "python"]
 exclude = ["venv", "env", "dist", "build", "tests", "tests.*"]
 packages = [
-    {include = "marshmallow"}
+    {include = "marshmallow_muffin"}
 ]
 
 [tool.poetry.dependencies]
