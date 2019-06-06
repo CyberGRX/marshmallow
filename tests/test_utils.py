@@ -5,7 +5,7 @@ from copy import copy, deepcopy
 
 import pytest
 
-from marshmallow import utils
+from marshmallow_muffin import utils
 from tests.base import (
     assert_datetime_equal,
     central,

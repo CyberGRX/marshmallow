@@ -1,7 +1,7 @@
 from collections import namedtuple
 
-from marshmallow import missing
-from marshmallow.error_store import merge_errors
+from marshmallow_muffin import missing
+from marshmallow_muffin.error_store import merge_errors
 
 
 def test_missing_is_falsy():

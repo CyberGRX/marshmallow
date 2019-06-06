@@ -1,7 +1,7 @@
 import pytest
 
-from marshmallow import Schema, fields, class_registry
-from marshmallow.exceptions import RegistryError
+from marshmallow_muffin import Schema, fields, class_registry
+from marshmallow_muffin.exceptions import RegistryError
 
 
 def test_serializer_has_class_registry():

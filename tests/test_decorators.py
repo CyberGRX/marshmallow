@@ -1,6 +1,6 @@
 import pytest
 
-from marshmallow import (
+from marshmallow_muffin import (
     Schema,
     fields,
     pre_dump,

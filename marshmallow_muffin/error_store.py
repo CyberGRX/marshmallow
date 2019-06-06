@@ -6,7 +6,7 @@
     Users should not need to use this module directly.
 """
 
-from marshmallow.exceptions import SCHEMA
+from marshmallow_muffin.exceptions import SCHEMA
 
 
 class ErrorStore:
@@ -31,7 +31,7 @@ def merge_errors(errors1, errors2):
     """Deeply merge two error messages.
 
     The format of ``errors1`` and ``errors2`` matches the ``message``
-    parameter of :exc:`marshmallow.exceptions.ValidationError`.
+    parameter of :exc:`marshmallow_muffin.exceptions.ValidationError`.
     """
     if not errors1:
         return errors2

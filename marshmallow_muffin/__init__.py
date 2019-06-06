@@ -1,7 +1,7 @@
-from marshmallow.schema import Schema, SchemaOpts
+from marshmallow_muffin.schema import Schema, SchemaOpts
 
 from . import fields
-from marshmallow.decorators import (
+from marshmallow_muffin.decorators import (
     pre_dump,
     post_dump,
     pre_load,
@@ -9,11 +9,11 @@ from marshmallow.decorators import (
     validates,
     validates_schema,
 )
-from marshmallow.utils import EXCLUDE, INCLUDE, RAISE, pprint, missing
-from marshmallow.exceptions import ValidationError
+from marshmallow_muffin.utils import EXCLUDE, INCLUDE, RAISE, pprint, missing
+from marshmallow_muffin.exceptions import ValidationError
 from distutils.version import LooseVersion
 
-__version__ = "3.0.0rc6"
+__version__ = "3.1.0"
 __version_info__ = tuple(LooseVersion(__version__).version)
 __all__ = [
     "EXCLUDE",

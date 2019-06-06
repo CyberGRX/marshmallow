@@ -1,9 +1,9 @@
 """Decorators for registering schema pre-processing and post-processing methods.
-These should be imported from the top-level `marshmallow` module.
+These should be imported from the top-level `marshmallow_muffin` module.
 
 Example: ::
 
-    from marshmallow import (
+    from marshmallow_muffin import (
         Schema, pre_load, pre_dump, post_load, validates_schema,
         validates, fields, ValidationError
     )

@@ -6,8 +6,8 @@ import simplejson
 
 import pytz
 
-from marshmallow import Schema, fields, post_load, validate, missing
-from marshmallow.exceptions import ValidationError
+from marshmallow_muffin import Schema, fields, post_load, validate, missing
+from marshmallow_muffin.exceptions import ValidationError
 
 central = pytz.timezone("US/Central")
 

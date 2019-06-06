@@ -3,7 +3,7 @@ import re
 from itertools import zip_longest
 from operator import attrgetter
 
-from marshmallow.exceptions import ValidationError
+from marshmallow_muffin.exceptions import ValidationError
 
 
 class Validator:
@@ -486,7 +486,7 @@ class ContainsOnly(OneOf):
     .. versionchanged:: 3.0.0b2
         Duplicate values are considered valid.
     .. versionchanged:: 3.0.0b2
-        Empty input is considered valid. Use `validate.Length(min=1) <marshmallow.validate.Length>`
+        Empty input is considered valid. Use `validate.Length(min=1) <marshmallow_muffin.validate.Length>`
         to validate against empty inputs.
     """
 

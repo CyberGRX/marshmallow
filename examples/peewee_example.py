@@ -3,7 +3,7 @@ from functools import wraps
 
 from flask import Flask, request, g, jsonify
 import peewee as pw
-from marshmallow import (
+from marshmallow_muffin import (
     Schema,
     fields,
     validate,

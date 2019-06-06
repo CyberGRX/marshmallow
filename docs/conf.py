@@ -1,5 +1,5 @@
 #
-# marshmallow documentation build configuration file.
+# marshmallow_muffin documentation build configuration file.
 #
 # This file is execfile()d with the current directory set to its containing dir.
 #
@@ -20,7 +20,7 @@ import alabaster
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath(os.path.join("..", "src")))
-import marshmallow  # noqa: E402
+import marshmallow_muffin  # noqa: E402
 
 # -- General configuration -----------------------------------------------------
 
@@ -45,7 +45,7 @@ intersphinx_mapping = {
     "python": ("https://python.readthedocs.io/en/latest/", None)
 }
 
-issues_github_path = "marshmallow-code/marshmallow"
+issues_github_path = "marshmallow_muffin-code/marshmallow_muffin"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -56,12 +56,12 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = "marshmallow"
+project = "marshmallow_muffin"
 copyright = ' {:%Y} <a href="https://stevenloria.com">Steven Loria</a>'.format(
     dt.datetime.utcfromtimestamp(os.path.getmtime("../CHANGELOG.rst"))
 )
 
-version = release = marshmallow.__version__
+version = release = marshmallow_muffin.__version__
 
 exclude_patterns = ["_build"]
 
@@ -74,17 +74,17 @@ templates_path = ["_templates"]
 html_show_sourcelink = False
 
 html_theme_options = {
-    "logo": "marshmallow-logo.png",
+    "logo": "marshmallow_muffin-logo.png",
     "description": "Object serialization and deserialization, lightweight and fluffy.",
     "description_font_style": "italic",
-    "github_user": "marshmallow-code",
-    "github_repo": "marshmallow",
+    "github_user": "marshmallow_muffin-code",
+    "github_repo": "marshmallow_muffin",
     "github_banner": True,
     "github_type": "star",
-    "opencollective": "marshmallow",
+    "opencollective": "marshmallow_muffin",
     "tidelift_url": (
         "https://tidelift.com/subscription/pkg/pypi-marshmallow"
-        "?utm_source=marshmallow&utm_medium=referral&utm_campaign=docs"
+        "?utm_source=marshmallow_muffin&utm_medium=referral&utm_campaign=docs"
     ),
     "code_font_size": "0.8em",
     "warn_bg": "#FFC",
@@ -92,9 +92,9 @@ html_theme_options = {
     # Used to populate the useful-links.html template
     "extra_nav_links": OrderedDict(
         [
-            ("marshmallow @ PyPI", "https://pypi.python.org/pypi/marshmallow"),
+            ("marshmallow_muffin @ PyPI", "https://pypi.python.org/pypi/marshmallow"),
             (
-                "marshmallow @ GitHub",
+                "marshmallow_muffin @ GitHub",
                 "https://github.com/marshmallow-code/marshmallow",
             ),
             (

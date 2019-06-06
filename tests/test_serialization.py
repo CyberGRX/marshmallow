@@ -8,8 +8,8 @@ import math
 
 import pytest
 
-from marshmallow import Schema, fields, utils, missing as missing_
-from marshmallow.exceptions import ValidationError
+from marshmallow_muffin import Schema, fields, utils, missing as missing_
+from marshmallow_muffin.exceptions import ValidationError
 
 from tests.base import User, ALL_FIELDS
 
@@ -785,7 +785,7 @@ class TestFieldSerialization:
             fields.List(ASchema)
         expected_msg = (
             "The list elements must be a subclass or instance of "
-            "marshmallow.base.FieldABC"
+            "marshmallow_muffin.base.FieldABC"
         )
         assert expected_msg in str(excinfo)
 
@@ -826,7 +826,7 @@ class TestFieldSerialization:
             fields.Tuple([ASchema])
         expected_msg = (
             'Elements of "tuple_fields" must be subclasses or '
-            "instances of marshmallow.base.FieldABC."
+            "instances of marshmallow_muffin.base.FieldABC."
         )
         assert expected_msg in str(excinfo)
 
