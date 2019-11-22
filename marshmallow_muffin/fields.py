@@ -1567,25 +1567,11 @@ class EnumField(Field):
     def _deserialize(self, value, attr, data):
         if value is None:
             return None
-        elif self.load_by == LoadDumpOptions.value:
-            return self._deserialize_by_value(value, attr, data)
-        else:
-            return self._deserialize_by_name(value, attr, data)
-
-    def _deserialize_by_value(self, value, attr, data):
-        try:
-            return self.enum(value)
-        except ValueError:
-            self.fail("by_value", input=value, value=value)
-
-    def _deserialize_by_name(self, value, attr, data):
-        if not isinstance(value, str):
-            self.fail("must_be_string", input=value, name=value)
 
         try:
             return getattr(self.enum, value)
-        except AttributeError:
-            self.fail("by_name", input=value, name=value)
+        except (AttributeError, TypeError):
+            return self.enum(value)
 
     def fail(self, key, **kwargs):
         kwargs["values"] = ", ".join([str(mem.value) for mem in self.enum])
