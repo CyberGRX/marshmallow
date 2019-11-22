@@ -146,6 +146,8 @@ class Field(FieldABC):
         dump_only=False,
         missing=missing_,
         error_messages=None,
+        unique=False,
+        indexed=False,
         **metadata
     ):
         self.default = default
@@ -182,6 +184,8 @@ class Field(FieldABC):
         self.required = required
         self.missing = missing
         self.metadata = metadata
+        self.unique = unique
+        self.indexed = indexed
         self._creation_index = Field._creation_index
         Field._creation_index += 1
 
